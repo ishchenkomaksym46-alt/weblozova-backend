@@ -12,6 +12,10 @@ import { getArticleController } from './controllers/articleControllers/getArticl
 import { acceptRequestController } from './controllers/articleControllers/acceptRequestController.js';
 import { declineRequestController } from './controllers/articleControllers/declineRequestController.js';
 import { getDeclinedArticlesController } from './controllers/articleControllers/getDeclinedArticlesController.js';
+import { getAcceptedArticles } from './controllers/articleControllers/getAcceptedArticlesController.js';
+import { getArticleByIdController } from './controllers/articleControllers/getArticleByIdController.js';
+import { getArticlesController } from './controllers/articleControllers/getArticlesController.js';
+import { getFullInfoController } from './controllers/articleControllers/getFullInfoController.js';
 
 const app = express();
 
@@ -26,9 +30,13 @@ app.post('/login', loginController);
 app.get('/getUserData', auth, getUserDataController);
 app.get('/checkRole', auth, getUserRoleController);
 app.post('/addArticle', auth, addArticleController);
-app.get('/getArticles', auth, roleMiddleware, getArticleController);
+app.get('/getPendingArticles', auth, roleMiddleware, getArticleController);
 app.get('/acceptRequest', auth, roleMiddleware, acceptRequestController);
 app.get('/declineRequest', auth, roleMiddleware, declineRequestController);
 app.get('/getDeclinedArticles', auth, roleMiddleware, getDeclinedArticlesController);
+app.get('/getAcceptedArticles', auth, roleMiddleware, getAcceptedArticles);
+app.get('/getArticleById', auth, roleMiddleware, getArticleByIdController);
+app.get('/getArticles', getArticlesController);
+app.get('/getFullInfo', getFullInfoController);
 
 app.listen(process.env.PORT, () => console.log('Server started!'));
