@@ -16,6 +16,7 @@ import { getAcceptedArticles } from './controllers/articleControllers/getAccepte
 import { getArticleByIdController } from './controllers/articleControllers/getArticleByIdController.js';
 import { getArticlesController } from './controllers/articleControllers/getArticlesController.js';
 import { getFullInfoController } from './controllers/articleControllers/getFullInfoController.js';
+import { updateArticleController } from './controllers/articleControllers/updateArticleController.js';
 
 const app = express();
 
@@ -38,5 +39,6 @@ app.get('/getAcceptedArticles', auth, roleMiddleware, getAcceptedArticles);
 app.get('/getArticleById', auth, roleMiddleware, getArticleByIdController);
 app.get('/getArticles', getArticlesController);
 app.get('/getFullInfo', getFullInfoController);
+app.post('/updateArticle', auth, roleMiddleware, updateArticleController);
 
 app.listen(process.env.PORT, () => console.log('Server started!'));
